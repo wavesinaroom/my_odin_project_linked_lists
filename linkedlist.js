@@ -8,29 +8,36 @@ function createNode(value){
 
 function List(value){
 
-   function checkPreviousNode(node){
-    if(node.previous!==null){
-      return checkPreviousNode(node.previous);
-    }else{
-      return node;
-    }
+  function checkPreviousNode(node){
+   if(node.previous!==null){
+     return checkPreviousNode(node.previous);
+   }else{
+     return node;
    }
-   function CheckNextNode(node){
-    if(node.next!==null){
-      return CheckNextNode(node.next);
-    }else{
-      return node;
-    }
   }
+  function checkNextNode(node){
+   if(node.next!==null){
+     return checkNextNode(node.next);
+   }else{
+     return node;
+   }
+  }
+
   return{
     root: createNode(value),
     appendNode: function(value){
-      let head = CheckNextNode(this.root);
+      let head = checkNextNode(this.root);
       head.next = createNode(value);
     },
     prependNode: function(value){
       let tail = checkPreviousNode(this.root);
       tail.previous = createNode(value);
+    },
+    getHead: function(){
+      return checkNextNode(this.root);
+    },
+    getTail: function(){
+      return checkPreviousNode(this.root);
     }
   }
 }
@@ -41,3 +48,5 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
+console.log(list.getHead());
+console.log(list.getTail());
