@@ -8,25 +8,24 @@ function createNode(value){
 
 function List(value){
 
-   function findLastNode(node,value){
-    if(node.next===null){
-      console.log('next is null');
-      node.next = createNode(value); 
-      return; 
+   function CheckNextNode(node){
+    if(node.next!==null){
+      return CheckNextNode(node.next);
+    }else{
+      return node;
     }
-    findLastNode(node.next,value);
   }
   return{
-    head: createNode(value),
+    root: createNode(value),
     appendNode: function(value){
-      findLastNode(this.head,value);
+      let last = CheckNextNode(this.root);
+      last.next = createNode(value);
+      console.log(last.next);
     }
   }
 }
 
-let list = new List(30);
-console.log(list.head);
-list.appendNode(59);
-console.log(list.head.next);
-list.appendNode(93546);
-console.log(list.head.next.next);
+const list = List(89);
+list.appendNode(98);
+list.appendNode(9835);
+list.appendNode(8245);
