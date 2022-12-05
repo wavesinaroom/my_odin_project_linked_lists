@@ -49,5 +49,5 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-console.log(list.getHead().value);
+console.log(list.getHead());
 console.log(list.getTail());
