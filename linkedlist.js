@@ -1,13 +1,21 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = undefined;
-    this.previous = undefined;
+function createNode(value){
+  return{
+    value: value,
+    next: null,
+    previous: null,
   }
 }
 
-let firstNode = new Node(2);
-firstNode.next = new Node(5);
+function List(value){
+  return{
+    head: createNode(value),
+    addNode: function(value){
+      this.head.next = createNode(value);
+    }
+  }
+}
 
-console.log(firstNode.next.value);
-
+let list = new List(30);
+console.log(list.head);
+list.addNode(40);
+console.log(list.head.next);
