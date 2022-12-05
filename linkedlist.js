@@ -7,15 +7,26 @@ function createNode(value){
 }
 
 function List(value){
+
+   function findLastNode(node,value){
+    if(node.next===null){
+      console.log('next is null');
+      node.next = createNode(value); 
+      return; 
+    }
+    findLastNode(node.next,value);
+  }
   return{
     head: createNode(value),
-    addNode: function(value){
-      this.head.next = createNode(value);
+    appendNode: function(value){
+      findLastNode(this.head,value);
     }
   }
 }
 
 let list = new List(30);
 console.log(list.head);
-list.addNode(40);
+list.appendNode(59);
 console.log(list.head.next);
+list.appendNode(93546);
+console.log(list.head.next.next);
