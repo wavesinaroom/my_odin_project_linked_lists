@@ -8,6 +8,13 @@ function createNode(value){
 
 function List(value){
 
+   function checkPreviousNode(node){
+    if(node.previous!==null){
+      return checkPreviousNode(node.previous);
+    }else{
+      return node;
+    }
+   }
    function CheckNextNode(node){
     if(node.next!==null){
       return CheckNextNode(node.next);
@@ -18,9 +25,12 @@ function List(value){
   return{
     root: createNode(value),
     appendNode: function(value){
-      let last = CheckNextNode(this.root);
-      last.next = createNode(value);
-      console.log(last.next);
+      let head = CheckNextNode(this.root);
+      head.next = createNode(value);
+    },
+    prependNode: function(value){
+      let tail = checkPreviousNode(this.root);
+      tail.previous = createNode(value);
     }
   }
 }
@@ -29,3 +39,5 @@ const list = List(89);
 list.appendNode(98);
 list.appendNode(9835);
 list.appendNode(8245);
+list.prependNode(9834);
+list.prependNode(2345);
