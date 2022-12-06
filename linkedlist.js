@@ -40,8 +40,8 @@ function List(value) {
     },
     pop: function() {
       let secondLast = checkNextNode(this.root).previous;
-      delete secondLast.next;
-      console.log(secondLast);
+      secondLast.next = null;
+      console.log(secondLast.next);
     }
   };
 }
