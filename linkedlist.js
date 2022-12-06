@@ -22,6 +22,7 @@ function List(value) {
     appendNode: function (value) {
       let head = checkNextNode(this.root);
       head.next = new Node(value);
+      head.next.previous = head;
     },
     prependNode: function (value) {
       const temporal = this.root;
@@ -37,6 +38,11 @@ function List(value) {
     size: function () {
       return Node.count;
     },
+    pop: function() {
+      let secondLast = checkNextNode(this.root).previous;
+      delete secondLast.next;
+      console.log(secondLast);
+    }
   };
 }
 
@@ -46,4 +52,4 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-console.log(list.size());
+list.pop();
