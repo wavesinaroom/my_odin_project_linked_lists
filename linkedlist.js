@@ -34,7 +34,7 @@ function List(value) {
     getTail: function () {
       return this.root;
     },
-    countItems: function () {
+    size: function () {
       return Node.count;
     },
   };
@@ -46,4 +46,4 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-console.log(list.countItems());
+console.log(list.size());
