@@ -17,6 +17,18 @@ function List(value) {
     }
   }
 
+  function containsValue(node, value){
+    if(node.next === null && node.value !==value){
+      return false;
+    }
+
+    if(node.value !== value){
+      containsValue(node.next,value);
+    }else if(node.value === value){
+      return true;
+    }
+  }
+
   return {
     root: new Node(value),
     appendNode: function (value) {
@@ -41,7 +53,9 @@ function List(value) {
     pop: function() {
       let secondLast = checkNextNode(this.root).previous;
       secondLast.next = null;
-      console.log(secondLast.next);
+    },
+    contains: function(value){
+      containsValue(this.root, value);
     }
   };
 }
@@ -52,4 +66,4 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-list.pop();
+list.contains(7245);
