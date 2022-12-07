@@ -44,13 +44,13 @@ function List(value) {
     }
   }
 
-  function printNodeValue(node, string){
+  function printNodeValue(node){
 
     if(node.next === null){
-      return string;
+      return `(${node.value})`;
     }
 
-    return printNodeValue(node.next, string+`(${node.value})->`);
+    return `(${node.value})->` + printNodeValue(node.next);
   }
 
   return {
@@ -85,7 +85,7 @@ function List(value) {
       valuePosition(this.root, value, 0);
     },
     ToString: function(){
-      printNodeValue(this.root, `(${this.root.value})->`) 
+      printNodeValue(this.root);
     }
   };
 }
@@ -96,4 +96,14 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-console.log(list.ToString());
+
+  function printNodeValue(node){
+
+    if(node.next === null){
+      return `(${node.value})`;
+    }
+
+    return `(${node.value})->` + printNodeValue(node.next);
+  }
+const string = printNodeValue(list.root);
+console.log(string);
