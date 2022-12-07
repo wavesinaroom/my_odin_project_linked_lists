@@ -29,6 +29,21 @@ function List(value) {
     }
   }
 
+  function valuePosition(node, value, count){
+    if(node.next === null && node.value !== value){
+      console.log('Not in the list');
+      return 0;
+    }
+
+    if(node.value !== value){
+      console.log('Not yet');
+      return valuePosition(node.next,value, count+1);
+    }else if(node.value === value){
+      console.log('Found!');
+      return position;
+    }
+  }
+
   return {
     root: new Node(value),
     appendNode: function (value) {
@@ -56,6 +71,9 @@ function List(value) {
     },
     contains: function(value){
       containsValue(this.root, value);
+    },
+    find: function(value){
+      valuePosition(this.root, value, 0);
     }
   };
 }
@@ -66,4 +84,4 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-list.contains(7245);
+console.log(list.find(8245));
