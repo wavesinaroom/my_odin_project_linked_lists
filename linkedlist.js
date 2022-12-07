@@ -44,6 +44,15 @@ function List(value) {
     }
   }
 
+  function printNodeValue(node, string){
+
+    if(node.next === null){
+      return string;
+    }
+
+    return printNodeValue(node.next, string+`(${node.value})->`);
+  }
+
   return {
     root: new Node(value),
     appendNode: function (value) {
@@ -74,6 +83,9 @@ function List(value) {
     },
     find: function(value){
       valuePosition(this.root, value, 0);
+    },
+    ToString: function(){
+      printNodeValue(this.root, `(${this.root.value})->`) 
     }
   };
 }
@@ -84,4 +96,4 @@ list.appendNode(9835);
 list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
-console.log(list.find(8245));
+console.log(list.ToString());
