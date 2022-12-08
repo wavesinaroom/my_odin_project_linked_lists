@@ -12,14 +12,14 @@ class Node{
 function List(value) {
 
   
-  function valuePosition (node, value, count){
+  function valuePosition (node, value, position){
     if(node.next === null && node.value !== value){
-      return 0;
+      return -1;
     }
     if(node.value !== value){
-      return valuePosition(node.next,value, count+1);
+      return valuePosition(node.next,value, position+1);
     }else if(node.value === value){
-      return count;
+      return position;
     }
   }
 
@@ -43,14 +43,10 @@ function List(value) {
     }
   }
 
-  
-
   function printNodeValue(node){
-
     if(node.next === null){
       return `(${node.value})`;
     }
-
     return `(${node.value})->` + printNodeValue(node.next);
   }
 
@@ -88,15 +84,6 @@ function List(value) {
     ToString: function(){
       return printNodeValue(this.root);
     },
-
   };
 }
 
-const list = List(89);
-list.appendNode(98);
-list.appendNode(9835);
-list.appendNode(8245);
-list.prependNode(9834);
-list.prependNode(2345);
-
-console.log(list.ToString());
