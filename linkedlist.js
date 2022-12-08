@@ -8,7 +8,21 @@ class Node{
   }
 }
 
+
 function List(value) {
+
+  
+  function valuePosition (node, value, count){
+    if(node.next === null && node.value !== value){
+      return 0;
+    }
+    if(node.value !== value){
+      return valuePosition(node.next,value, count+1);
+    }else if(node.value === value){
+      return count;
+    }
+  }
+
   function checkNextNode(node) {
     if (node.next !== null) {
       return checkNextNode(node.next);
@@ -29,20 +43,7 @@ function List(value) {
     }
   }
 
-  function valuePosition(node, value, count){
-    if(node.next === null && node.value !== value){
-      console.log('Not in the list');
-      return 0;
-    }
-
-    if(node.value !== value){
-      console.log('Not yet');
-      return valuePosition(node.next,value, count+1);
-    }else if(node.value === value){
-      console.log('Found!');
-      return position;
-    }
-  }
+  
 
   function printNodeValue(node){
 
@@ -82,11 +83,12 @@ function List(value) {
       containsValue(this.root, value);
     },
     find: function(value){
-      valuePosition(this.root, value, 0);
+     return valuePosition(this.root, value, 0);
     },
     ToString: function(){
-      printNodeValue(this.root);
-    }
+      return printNodeValue(this.root);
+    },
+
   };
 }
 
@@ -97,13 +99,4 @@ list.appendNode(8245);
 list.prependNode(9834);
 list.prependNode(2345);
 
-  function printNodeValue(node){
-
-    if(node.next === null){
-      return `(${node.value})`;
-    }
-
-    return `(${node.value})->` + printNodeValue(node.next);
-  }
-const string = printNodeValue(list.root);
-console.log(string);
+console.log(list.ToString());
